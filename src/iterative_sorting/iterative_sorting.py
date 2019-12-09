@@ -38,6 +38,49 @@ def bubble_sort(arr):
 
 
 # # STRETCH: implement the Count Sort function below
-# def count_sort(arr, maximum=-1):
+def count_sort(arr, maximum=-1):
+    negative = False
 
-#     return arr
+    # Checks to see if there's a maximum passed and sets it if one isn't passed
+    if maximum == -1 and len(arr) > 0:
+        maximum = max(arr)
+
+    # Check to see if any negative values are inside the passed list
+    for i in arr:
+        if i < 0:
+            negative = True
+
+    if negative == False:
+        # Creates an array to hold the count (based on the maximum number)
+        count = [0 for x in range(0, maximum + 1)]
+
+        # print("Count before counting: ", count)
+
+        # Goes through and talleys the number from the passed list
+        for i in arr:
+            count[i] += 1
+
+        # print("Count after counting: ", count)
+
+        # Add the sum of the previous state to the current one
+        for i in range(0, maximum + 1):
+            if i > 0:
+                count[i] = count[i] + count[i-1]
+
+        # print("Count after adding: ", count)
+
+        # Create a new list to hold the sorted numbers
+        newList = [x for x in range(len(arr))]
+
+        # Go through the array and place the values in the right index
+        for i in arr:
+            newList[count[i] - 1] = i
+            count[i] -= 1
+
+        # print("New List: ", newList)
+
+        arr = newList
+    else:
+        arr = "Error, negative numbers not allowed in Count Sort"
+
+    return arr
