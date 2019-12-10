@@ -36,17 +36,19 @@ def merge(arrA, arrB):
 # TO-DO: implement the Merge Sort function below USING RECURSION
 
 
-# def merge_sort(arr):
-#     # TO-DO
+def merge_sort(arr):
+    # TO-DO
 
-#     # Get the middle (floor division)
-#     if len(arr) > 1:
-#         middle = len(arr) // 2
-#         left = merge_sort(arr[:middle])
-#         right = merge_sort(arr[middle:])
-#     else:
-#         merge(left, right)
-#     return arr
+    if len(arr) > 1:
+        # Get the middle (floor division)
+        middle = len(arr) // 2
+        # Get everything from the LHS and break it down until you get a list of length 1
+        left = merge_sort(arr[:middle])
+        # Get everything from the LHS and break it down until you get a list of length 1
+        right = merge_sort(arr[middle:])
+        # Re-assign arr
+        arr = merge(left, right)
+    return arr
 
     # # STRETCH: implement an in-place merge sort algorithm
     # def merge_in_place(arr, start, mid, end):
